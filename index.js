@@ -12,7 +12,7 @@ const {
 } = require('./messages');
 const utils = require('./utils');
 
-require('dotenv').config();
+require('dotenv').config({ path: path.resolve(__dirname, '.env') });
 
 const agent = new Agent({
   socksHost: process.env.SOCKS_HOST,
