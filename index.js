@@ -9,17 +9,26 @@ const agent = new Agent({
   socksPort: process.env.SOCKS_PORT
 });
 
+/**
+ * Parse channel link and sends notify if long time there were no posts
+ */
 async function main() {
   const response = await axios.get(process.env.CHANNEL_TO_LOOKUP_URL, {
     httpsAgent: agent
   });
+
+  /**
+   * Get timestamp of the last post
+   */
   const $ = cheerio.load(response.data);
   const lastPostTimestamp = $('time').last().attr('datetime');
-  const date = new Date(lastPostTimestamp);
-  const currentDate = new Date();
-  const daysWithoutPosts = 1000 * 60 * 60 * 24 * process.env.DAYS_WITHOUT_POSTS;
+  const lastPostDate = new Date(lastPostTimestamp);
 
-  if (currentDate - date > daysWithoutPosts) {
+  // Count of days in milliseconds
+  const daysWithoutPosts = 1000 * 60 * 60 * 24 * process.env.DAYS_WITHOUT_POSTS;
+  const currentDate = new Date();
+
+  if (currentDate - lastPostDate > daysWithoutPosts) {
     await axios({
       method: 'post',
       url: process.env.NOTIFY_URL,
