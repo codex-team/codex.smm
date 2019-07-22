@@ -47,6 +47,11 @@ async function main() {
   }
 }
 
+/**
+ * Chooses message template and post message
+ * @param {Object} params - values for substituting values in placeholders
+ * @return {Promise<void>}
+ */
 async function sendNotify(params) {
   const messageTemplate = utils.getRandomElement(FIRST_TIME_MESSAGES);
 
@@ -64,6 +69,12 @@ async function sendNotify(params) {
   }
 }
 
+/**
+ * Compile and send message via CodeX Bot
+ * @param {String} message - message to send
+ * @param {Object} params - values for substituting values in placeholders
+ * @return {Promise<void>}
+ */
 async function postMessage(message, params) {
   await axios({
     method: 'post',
