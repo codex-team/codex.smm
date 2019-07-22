@@ -1,8 +1,11 @@
+const fs = require('fs');
+const path = require('path');
 const Agent = require('socks5-https-client/lib/Agent');
 const axios = require('axios');
 const cheerio = require('cheerio');
 const {
   FIRST_TIME_MESSAGES,
+  SECOND_TIME_MESSAGES,
   EVIL_EMOJI,
   SAD_EMOJI,
   RANDOM_EMOJI
@@ -38,9 +41,9 @@ async function main() {
   if (currentDate - lastPostDate > daysWithoutPosts) {
     const params = {
       daysCount: Math.floor((currentDate - lastPostDate) / (1000 * 60 * 60 * 24)),
-      EVIL_EMOJI: utils.getRandomElement(EVIL_EMOJI),
-      RANDOM_EMOJI: utils.getRandomElement(RANDOM_EMOJI),
-      SAD_EMOJI: utils.getRandomElement(SAD_EMOJI)
+      evilEmoji: utils.getRandomElement(EVIL_EMOJI),
+      randomEmoji: utils.getRandomElement(RANDOM_EMOJI),
+      sadEmoji: utils.getRandomElement(SAD_EMOJI)
     };
 
     await sendNotify(params);
@@ -53,7 +56,21 @@ async function main() {
  * @return {Promise<void>}
  */
 async function sendNotify(params) {
-  const messageTemplate = utils.getRandomElement(FIRST_TIME_MESSAGES);
+  let messageTemplate;
+  const lastNotifyTimeFilePath = path.resolve(__dirname, 'lastNotifyTime.txt');
+
+  try {
+    const fileContent = fs.readFileSync(lastNotifyTimeFilePath);
+    const lastNotifyDate = new Date(fileContent.toString());
+
+    if (lastNotifyDate.getDay() === new Date().getDay()) {
+      messageTemplate = utils.getRandomElement(SECOND_TIME_MESSAGES);
+    } else {
+      messageTemplate = utils.getRandomElement(FIRST_TIME_MESSAGES);
+    }
+  } catch (e) {
+    messageTemplate = utils.getRandomElement(FIRST_TIME_MESSAGES);
+  }
 
   if (typeof messageTemplate === 'string') {
     await postMessage(messageTemplate, params);
@@ -67,6 +84,8 @@ async function sendNotify(params) {
       }
     });
   }
+
+  fs.writeFileSync(lastNotifyTimeFilePath, new Date());
 }
 
 /**
