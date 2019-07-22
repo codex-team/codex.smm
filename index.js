@@ -37,7 +37,7 @@ async function main() {
 
   if (currentDate - lastPostDate > daysWithoutPosts) {
     const params = {
-      daysCount: (currentDate - lastPostDate) / (1000 * 60 * 60 * 24),
+      daysCount: Math.floor((currentDate - lastPostDate) / (1000 * 60 * 60 * 24)),
       EVIL_EMOJI: utils.getRandomElement(EVIL_EMOJI),
       RANDOM_EMOJI: utils.getRandomElement(RANDOM_EMOJI),
       SAD_EMOJI: utils.getRandomElement(SAD_EMOJI)
@@ -47,13 +47,7 @@ async function main() {
   }
 }
 
-async function sendNotify(params1) {
-  const params = {
-    daysCount: 3,
-    EVIL_EMOJI: utils.getRandomElement(EVIL_EMOJI),
-    RANDOM_EMOJI: utils.getRandomElement(RANDOM_EMOJI),
-    SAD_EMOJI: utils.getRandomElement(SAD_EMOJI)
-  };
+async function sendNotify(params) {
   const messageTemplate = utils.getRandomElement(FIRST_TIME_MESSAGES);
 
   if (typeof messageTemplate === 'string') {
@@ -78,4 +72,4 @@ async function postMessage(message, params) {
   });
 }
 
-sendNotify();
+main();
