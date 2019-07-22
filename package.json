@@ -1,0 +1,22 @@
+{
+  "name": "codex.smm",
+  "version": "1.0.0",
+  "description": "SMM assistant. Reminds you to write something to you followers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codex-team/codex.smm.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/codex-team/codex.smm/issues"
+  },
+  "homepage": "https://github.com/codex-team/codex.smm#readme",
+  "dependencies": {
+    "socks5-https-client": "^1.2.1"
+  }
+}
