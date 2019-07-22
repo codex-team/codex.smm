@@ -21,9 +21,9 @@ const FIRST_TIME_MESSAGES = [
   ]
 ];
 
-const EVIL_EMOJI = '😡🦍🤨☹️😤🤬😡🥵😑😐🥴👿😾';
-const SAD_EMOJI = '😓🤥😞😒😔😟😕🙁☹️😣😖😫😩🥺😢😭😧😦😯😬🤕😿';
-const RANDOM_EMOJI = '😒😅😘🙄😊😇😏😒🤨😚😈💩👊☝️🌝🌚🦍';
+const EVIL_EMOJI = ['😡', '🦍', '🤨', '☹', '️😤', '🤬', '😡🥵', '😑', '😐🥴', '👿', '😾'];
+const SAD_EMOJI = ['😓', '🤥', '😞', '😒', '😔', '😟', '😕', '🙁', '☹️', '😣', '😖', '😫', '😩🥺', '😢', '😭', '😧', '😦', '😯', '😬', '🤕', '😿'];
+const RANDOM_EMOJI = ['😒', '😅', '😘', '🙄', '😊', '😇', '😏', '😒', '🤨', '😚', '😈', '💩', '👊', '☝', '🌝', '🌚', '🦍'];
 
 module.exports = {
   FIRST_TIME_MESSAGES,
