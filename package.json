@@ -1,0 +1,26 @@
+{
+  "name": "codex.smm",
+  "version": "1.0.0",
+  "description": "SMM assistant. Reminds you to write something to you followers.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codex-team/codex.smm.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/codex-team/codex.smm/issues"
+  },
+  "homepage": "https://github.com/codex-team/codex.smm#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "cheerio": "^1.0.0-rc.3",
+    "dotenv": "^8.0.0",
+    "socks5-https-client": "^1.2.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.1.0",
+    "eslint-config-codex": "codex-team/eslint-config"
+  }
+}
